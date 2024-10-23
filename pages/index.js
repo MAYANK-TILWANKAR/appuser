@@ -124,7 +124,7 @@ const MobileView = () => {
       </div>
 
       {/* Bottom border with icons and Skip button */}
-      <div className="mt-44 ml-72 border border-gray-900 px-4 py-1 rounded-md filter drop-shadow-md ">
+      <div className="mt-48 ml-72 border border-gray-900 px-4 py-1 rounded-md filter drop-shadow-md ">
         <button className="text-gray-900 text-xs hover:text-gray-600">
           Skip
         </button>
