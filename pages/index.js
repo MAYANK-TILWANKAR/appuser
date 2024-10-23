@@ -22,7 +22,7 @@ const MobileView = () => {
   };
 
   return (
-    <div className="fixed flex overflow-y-hidden flex-col items-center justify-between min-h-screen bg-gradient-to-b from-blue-100 to-blue-200 bg-cover bg-center py-36 px-4 sm:py-12 sm:px-6 md:py-16 md:px-8 lg:py-20 lg:px-10">
+    <div className="fixed flex overflow-y-hidden flex-col items-center justify-between w-full h-screen bg-gradient-to-b from-blue-100 to-blue-200 bg-cover bg-center py-36">
       {/* Top border with icons */}
 
       {/* Main content */}
