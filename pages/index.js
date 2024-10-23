@@ -1,10 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Swiper from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const MobileView = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [isValidNumber, setIsValidNumber] = useState(false);
   const [selectedCountryCode, setSelectedCountryCode] = useState("+91");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showOTP, setShowOTP] = useState(false);
+  const [otp, setOTP] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const swiper = new Swiper(".swiper-container", {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+
+    return () => {
+      swiper.destroy();
+    };
+  }, []);
 
   const handleMobileNumberChange = (e) => {
     const number = e.target.value;
@@ -20,6 +42,45 @@ const MobileView = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const handleGetVerificationCode = () => {
+    setShowOTP(true);
+  };
+
+  const handleOTPChange = (e) => {
+    setOTP(e.target.value);
+  };
+
+  const handleSkip = () => {
+    setShowModal(true);
+  };
+
+  const services = [
+    {
+      name: "Women's Salon & Spa",
+      icon: "/images/cleaning.webp",
+    },
+    {
+      name: "Men's Salon & Massage",
+      icon: "/images/cleaning.webp",
+    },
+    {
+      name: "AC & Appliance Repair",
+      icon: "/images/cleaning.webp",
+    },
+    {
+      name: "Cleaning",
+      icon: "/images/cleaning.webp",
+    },
+    {
+      name: "Electrician, Plumber & Carpenter",
+      icon: "/images/cleaning.webp",
+    },
+    {
+      name: "Native Water Purifier",
+      icon: "/images/cleaning.webp",
+    },
+  ];
 
   return (
     <div className="fixed flex overflow-y-hidden flex-col items-center justify-between w-full h-screen bg-gradient-to-b from-blue-100 to-blue-200 bg-cover bg-center py-40">
@@ -105,30 +166,152 @@ const MobileView = () => {
             <input
               type="tel"
               placeholder="Enter Mobile Number"
-              className="w-full p-2 bg-transparent border-none outline-none text-sm  border-2 border-gray-300"
+              className="w-full p-2 bg-transparent border-none outline-none text-sm"
               value={mobileNumber}
               onChange={handleMobileNumberChange}
               maxLength={10}
             />
           </div>
-          <button
-            className={`w-full font-bold py-3 mt-4 rounded-md transition-colors text-sm sm:text-base ${
-              isValidNumber
-                ? "bg-black text-white cursor-pointer hover:bg-gray-800"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
-            }`}
-            disabled={!isValidNumber}>
-            Get Verification Code
-          </button>
+          {!showOTP ? (
+            <button
+              className={`w-full font-bold py-3 mt-4 rounded-md transition-colors text-sm sm:text-base ${
+                isValidNumber
+                  ? "bg-black text-white cursor-pointer hover:bg-gray-800"
+                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              }`}
+              disabled={!isValidNumber}
+              onClick={handleGetVerificationCode}>
+              Get Verification Code
+            </button>
+          ) : (
+            <>
+              <input
+                type="text"
+                placeholder="Enter OTP"
+                className="w-full p-2 mt-4 bg-white border border-gray-400 rounded-md outline-none text-sm"
+                value={otp}
+                onChange={handleOTPChange}
+                maxLength={6}
+              />
+              <button
+                className="w-full font-bold py-3 mt-4 rounded-md transition-colors text-sm sm:text-base bg-black text-white cursor-pointer hover:bg-gray-800"
+                onClick={() => {
+                  /* Handle OTP confirmation */
+                }}>
+                Confirm OTP
+              </button>
+            </>
+          )}
         </div>
       </div>
 
       {/* Bottom border with icons and Skip button */}
       <div className="mt-48 ml-72 border border-gray-900 px-4 py-1 rounded-md filter drop-shadow-md ">
-        <button className="text-gray-900 text-xs hover:text-gray-600">
+        <button
+          className="text-gray-900 text-xs hover:text-gray-600"
+          onClick={handleSkip}>
           Skip
         </button>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-white overflow-y-auto h-full w-full flex flex-col items-center justify-start pt-4">
+          <div className="w-full px-4 mb-4">
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold">Location</h2>
+              <button onClick={() => setShowModal(false)} className="text-2xl">
+                &times;
+              </button>
+            </div>
+            <p className="text-sm text-gray-500">Your Location</p>
+          </div>
+          <div className="w-full px-4 mb-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search for 'Your Service'"
+                className="w-full p-3 bg-gray-100 rounded-lg pl-10"
+              />
+              <svg
+                className="w-5 h-5 absolute left-3 top-3.5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-4 px-4 w-full">
+            {services.map((service, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <div className="bg-gray-100 rounded-lg p-4 w-20 h-20 flex items-center justify-center">
+                  <Image
+                    src={service.icon}
+                    width={40}
+                    height={40}
+                    alt={service.name}
+                  />
+                </div>
+                <p className="text-center text-sm mt-2">{service.name}</p>
+              </div>
+            ))}
+          </div>
+          <div className="w-full px-4 mt-6">
+            <div className="swiper-container">
+              <div className="swiper-wrapper">
+                <div className="swiper-slide">
+                  <div className="bg-black text-white rounded-lg p-6">
+                    <h3 className="text-lg font-semibold mb-2">Demo card 1</h3>
+                    <p>Some content for demo card 1</p>
+                  </div>
+                </div>
+                <div className="swiper-slide">
+                  <div className="bg-black text-white rounded-lg p-6">
+                    <h3 className="text-lg font-semibold mb-2">Demo card 2</h3>
+                    <p>Some content for demo card 2</p>
+                  </div>
+                </div>
+                <div className="swiper-slide">
+                  <div className="bg-black text-white rounded-lg p-6">
+                    <h3 className="text-lg font-semibold mb-2">Demo card 3</h3>
+                    <p>Some content for demo card 3</p>
+                  </div>
+                </div>
+              </div>
+              <div className="swiper-pagination"></div>
+            </div>
+          </div>
+          <div className="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-2">
+            <button className="flex flex-col items-center">
+              <span>Company </span>
+              <span className="text-xs">Name</span>
+            </button>
+            <button className="flex flex-col items-center">
+              <span>📋</span>
+              <span className="text-xs">Option1</span>
+            </button>
+            <button className="flex flex-col items-center">
+              <span>🎁</span>
+              <span className="text-xs">Option2</span>
+            </button>
+            <button className="flex flex-col items-center">
+              <span>🏠</span>
+              <span className="text-xs">Option3</span>
+            </button>
+            <button className="flex flex-col items-center">
+              <span>👤</span>
+              <span className="text-xs">Account</span>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
