@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Swiper from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -12,21 +13,6 @@ const MobileView = () => {
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOTP] = useState("");
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    const swiper = new Swiper(".swiper-container", {
-      slidesPerView: 1,
-      spaceBetween: 10,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-
-    return () => {
-      swiper.destroy();
-    };
-  }, []);
 
   const handleMobileNumberChange = (e) => {
     const number = e.target.value;
@@ -83,7 +69,7 @@ const MobileView = () => {
   ];
 
   return (
-    <div className="fixed flex overflow-y-hidden flex-col items-center justify-between w-full h-screen bg-gradient-to-b from-blue-100 to-blue-200 bg-cover bg-center py-40">
+    <div className="fixed flex overflow-x-auto flex-col items-center justify-between w-full h-screen bg-gradient-to-b from-blue-100 to-blue-200 bg-cover bg-center py-40">
       {/* Top border with icons */}
 
       {/* Main content */}
@@ -216,7 +202,7 @@ const MobileView = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-white overflow-y-auto h-full w-full flex flex-col items-center justify-start pt-4">
+        <div className="fixed inset-0 bg-white overflow-x-auto h-full max-w-md flex flex-col items-center justify-start pt-4">
           <div className="w-full px-4 mb-4">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-semibold">Location</h2>
@@ -263,42 +249,43 @@ const MobileView = () => {
               </div>
             ))}
           </div>
-          <div className="w-full px-4 mt-6">
-            <div className="swiper-container w-full">
-              <div className="swiper-wrapper">
-                <div className="swiper-slide w-full">
-                  <div className="bg-black text-white rounded-lg py-10">
-                    <h3 className="text-base sm:text-lg font-semibold mb-2">
-                      Demo card 1
-                    </h3>
-                    <p className="text-sm sm:text-base">
-                      Some content for demo card 1
-                    </p>
-                  </div>
+          <div className="w-full px-4 mt-6 overflow-x-auto">
+            <Swiper
+              spaceBetween={30}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              className="w-full">
+              <SwiperSlide>
+                <div className="bg-black text-white rounded-lg py-10 px-10">
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">
+                    Demo card 1
+                  </h3>
+                  <p className="text-sm sm:text-base">
+                    Some content for demo card 1
+                  </p>
                 </div>
-                <div className="swiper-slide w-full">
-                  <div className="bg-black text-white rounded-lg py-10">
-                    <h3 className="text-base sm:text-lg font-semibold mb-2">
-                      Demo card 2
-                    </h3>
-                    <p className="text-sm sm:text-base">
-                      Some content for demo card 2
-                    </p>
-                  </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="bg-black text-white rounded-lg py-10 px-10">
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">
+                    Demo card 2
+                  </h3>
+                  <p className="text-sm sm:text-base">
+                    Some content for demo card 2
+                  </p>
                 </div>
-                <div className="swiper-slide w-full">
-                  <div className="bg-black text-white rounded-lg py-10">
-                    <h3 className="text-base sm:text-lg font-semibold mb-2">
-                      Demo card 3
-                    </h3>
-                    <p className="text-sm sm:text-base">
-                      Some content for demo card 3
-                    </p>
-                  </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="bg-black text-white rounded-lg py-10 px-10">
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">
+                    Demo card 3
+                  </h3>
+                  <p className="text-sm sm:text-base">
+                    Some content for demo card 3
+                  </p>
                 </div>
-              </div>
-              <div className="swiper-pagination"></div>
-            </div>
+              </SwiperSlide>
+            </Swiper>
           </div>
           <div className="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-2">
             <button className="flex flex-col items-center">
