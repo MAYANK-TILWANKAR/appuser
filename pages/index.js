@@ -264,24 +264,36 @@ const MobileView = () => {
             ))}
           </div>
           <div className="w-full px-4 mt-6">
-            <div className="swiper-container">
+            <div className="swiper-container w-full">
               <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <div className="bg-black text-white rounded-lg p-6">
-                    <h3 className="text-lg font-semibold mb-2">Demo card 1</h3>
-                    <p>Some content for demo card 1</p>
+                <div className="swiper-slide w-full">
+                  <div className="bg-black text-white rounded-lg py-10">
+                    <h3 className="text-base sm:text-lg font-semibold mb-2">
+                      Demo card 1
+                    </h3>
+                    <p className="text-sm sm:text-base">
+                      Some content for demo card 1
+                    </p>
                   </div>
                 </div>
-                <div className="swiper-slide">
-                  <div className="bg-black text-white rounded-lg p-6">
-                    <h3 className="text-lg font-semibold mb-2">Demo card 2</h3>
-                    <p>Some content for demo card 2</p>
+                <div className="swiper-slide w-full">
+                  <div className="bg-black text-white rounded-lg py-10">
+                    <h3 className="text-base sm:text-lg font-semibold mb-2">
+                      Demo card 2
+                    </h3>
+                    <p className="text-sm sm:text-base">
+                      Some content for demo card 2
+                    </p>
                   </div>
                 </div>
-                <div className="swiper-slide">
-                  <div className="bg-black text-white rounded-lg p-6">
-                    <h3 className="text-lg font-semibold mb-2">Demo card 3</h3>
-                    <p>Some content for demo card 3</p>
+                <div className="swiper-slide w-full">
+                  <div className="bg-black text-white rounded-lg py-10">
+                    <h3 className="text-base sm:text-lg font-semibold mb-2">
+                      Demo card 3
+                    </h3>
+                    <p className="text-sm sm:text-base">
+                      Some content for demo card 3
+                    </p>
                   </div>
                 </div>
               </div>
