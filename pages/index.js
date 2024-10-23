@@ -22,7 +22,7 @@ const MobileView = () => {
   };
 
   return (
-    <div className="fixed flex overflow-y-hidden flex-col items-center justify-between w-full h-screen bg-gradient-to-b from-blue-100 to-blue-200 bg-cover bg-center py-36">
+    <div className="fixed flex overflow-y-hidden flex-col items-center justify-between w-full h-screen bg-gradient-to-b from-blue-100 to-blue-200 bg-cover bg-center py-40">
       {/* Top border with icons */}
 
       {/* Main content */}
@@ -124,7 +124,7 @@ const MobileView = () => {
       </div>
 
       {/* Bottom border with icons and Skip button */}
-      <div className="mt-36 ml-72 border border-gray-900 px-4 py-1 rounded-md filter drop-shadow-md ">
+      <div className="mt-32 ml-72 border border-gray-900 px-4 py-1 rounded-md filter drop-shadow-md ">
         <button className="text-gray-900 text-xs hover:text-gray-600">
           Skip
         </button>
