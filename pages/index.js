@@ -263,7 +263,7 @@ const MobileView = () => {
               <div className="py-8 px-4  border-t border-gray-200 shadow-xl">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="text-2xl font-bold mb-2">
-                    Women's Salon & Spa
+                    Women&apos;s Salon & Spa
                   </h3>
                   <button
                     onClick={() => setShowSubModal(false)}
