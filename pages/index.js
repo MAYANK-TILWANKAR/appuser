@@ -303,7 +303,7 @@ const MobileView = () => {
                   ))}
                 </div>
                 {showFullScreenModal && (
-                  <div className="pt-10 inset-0 bg-white z-50 flex flex-col h-screen w-full overflow-y-auto">
+                  <div className="pt-32 inset-0 bg-white z-50 flex flex-col h-screen w-full overflow-y-auto">
                     <div className="flex flex-col items-start justify-start py-4 px-4">
                       <div className="flex items-center w-full mb-4 top-0 bg-white z-10">
                         <button
